@@ -1,0 +1,155 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark nav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="padding-left: 8px;"><b>MyGate</b></a>
+      <ul class="navbar-nav  ml-auto" style="font-size: 20px; float:right;">
+      <li>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbars-rs-food"
+      aria-controls="navbars-rs-food"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      
+    >
+      <span class="navbar-toggler-icon"></span>
+      </li>
+    </button>
+</ul>
+    <div class="collapse navbar-collapse" id="navbars-rs-food">
+      <ul class="navbar-nav  ml-auto" id="myDIV" style="font-size: 20px; float:right;">
+      {%if request.user.is_superuser%}
+        <li class="nav-item" ><a class="nav-link" href="{% url 'visit:dashboard' %}">Home</a></li>
+        <li class="nav-item" ><a class="nav-link" href="{% url 'visit:visitor' %}">Visitors</a></li>
+        <li class="nav-item" ><a class="nav-link" href="{% url 'visit:newvisitor' %}">Add&nbspVisitors</a></li>
+        <li class="nav-item" ><a class="nav-link" href="{% url 'visit:NewApplicants' %}">Employee</a></li>
+        <li class="nav-item" ><a class="nav-link" href="{% url 'visit:register' %}">New&nbspEmployee</a></li>
+         <li class="nav-item" ><a class="nav-link" href="{% url 'visit:security_page' %}">Security</a></li>
+                  <li class="nav-item dropdown" >
+          <a class="nav-link dropdown-toggle" 
+            data-toggle="dropdown" href="#"  
+            aria-haspopup="true" aria-expanded="false" 
+            style="color: white; font-size:20px;">    
+           <b>
+            <i
+           class="fa fa-user m-2"
+           aria-hidden="true">
+         {% if user.is_authenticated %} Hello,{{user}}{% else %}Hello,User{% endif %}
+           </i></b></a>
+         <span class="dropdown-menu">
+           <a class=" btn dropdown-item" href="{% url 'visit:changepass' %}" >Change Password</a>
+           <a class="dropdown-item" href="{% url 'visit:logout' %}">Log out</a>
+         </span>
+         
+       </li>
+            {% elif request.user.is_staff and perms.visit.is_hr %}
+        <li class="nav-item" ><a class="nav-link active" href="{% url 'visit:dashboard' %}">Home</a></li>
+        <li class="nav-item" ><a class="nav-link" href="{% url 'visit:visitor' %}">Visitors</a></li>
+        <li class="nav-item" ><a class="nav-link" href="{% url 'visit:newvisitor' %}">Add Visitors</a></li>
+        <li class="nav-item" ><a class="nav-link" href="{% url 'visit:NewApplicants' %}">Employee</a></li>
+        <li class="nav-item" ><a class="nav-link" href="{% url 'visit:register' %}">New&nbspEmployee</a></li>
+                  <li class="nav-item dropdown" >
+          <a class="nav-link dropdown-toggle" 
+            data-toggle="dropdown" href="#" role="button" 
+            aria-haspopup="true" aria-expanded="false" 
+            style="color: white; font-size:20px;">    
+           <b>
+            <i
+           class="fa fa-user m-2"
+           aria-hidden="true"
+           ></i>
+         {% if user.is_authenticated %} Hello,{{user}}{% else %}Hello,User{% endif %}</b></a>
+         
+         <div class="dropdown-menu">
+           <a class=" btn dropdown-item" href="{% url 'visit:changepass' %}" >Change Password</a>
+           
+           
+                         
+           
+           <a class="dropdown-item" href="{% url 'visit:logout' %}">Log out</a>
+           
+         </div>
+         
+       </li>
+         {% elif request.user.is_staff and perms.visit.is_Security %}
+         <li class="nav-item" style="margin-right: 10px;"><a class="nav-link" href="{% url 'visit:security_page' %}">Security Page</a></li>
+
+         <li class="nav-item dropdown" >
+          <a class="nav-link dropdown-toggle" 
+            data-toggle="dropdown" href="#" role="button" 
+            aria-haspopup="true" aria-expanded="false" 
+            style="color: white; font-size:20px;">    
+           <b>
+            <i
+           class="fa fa-user m-2"
+           aria-hidden="true"
+           ></i>
+         {% if user.is_authenticated %} Hello,{{user}}{% else %}Hello,User{% endif %}</b></a>
+         
+         <div class="dropdown-menu">
+           <a class=" btn dropdown-item" href="{% url 'visit:changepass' %}" >Change Password</a>
+           
+           
+                         
+           
+           <a class="dropdown-item" href="{% url 'visit:logout' %}">Log out</a>
+           
+         </div>
+         
+       </li>
+       {%elif user.is_authenticated%}
+                <li class="nav-item dropdown" >
+          <a class="nav-link dropdown-toggle" 
+            data-toggle="dropdown" href="#" role="button" 
+            aria-haspopup="true" aria-expanded="false" 
+            style="color: white; font-size:20px;">    
+           <b>
+            <i
+           class="fa fa-user m-2"
+           aria-hidden="true"
+           ></i>
+         {% if user.is_authenticated %} Hello,{{user}}{% else %}Hello,User{% endif %}</b></a>
+         
+         <div class="dropdown-menu">
+           <a class=" btn dropdown-item" href="{% url 'visit:changepass' %}" >Change Password</a>
+           
+           
+                         
+           
+           <a class="dropdown-item" href="{% url 'visit:logout' %}">Log out</a>
+           
+         </div>
+         
+       </li>
+        {% else %}
+        
+         <li class="nav-item"  ><a class="nav-link" href="..\ ">Student</a></li> 
+         <li class="nav-item"  ><a class="nav-link" href="{% url 'visit:login' %}">Login</a></li> 
+         <li class="nav-item"  ><a class="nav-link" href="\sineup\">Sign Up</a></li> 
+          <li class="nav-item dropdown" >
+          <a class="nav-link" 
+             href="#" role="button" 
+            aria-haspopup="true" aria-expanded="false" 
+            style="color: white; font-size:20px;">    
+           <b>
+            <i
+           class="fa fa-user m-2"
+           aria-hidden="true"
+           ></i>
+         {% if user.is_authenticated %} Hello,{{user}}{% else %}Hello,User{% endif %}</b></a></li>
+         {% endif %}
+        </ul>
+      
+                    
+      
+
+    </div>
+    <div>
+        <ul class="mr-5" style="list-style: none;">
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

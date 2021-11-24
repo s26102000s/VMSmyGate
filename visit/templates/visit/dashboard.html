@@ -1,0 +1,173 @@
+{% extends 'base1.html' %} 
+{%load static%}
+{% block content %} 
+{% include 'visit/navbar1.html' %}
+
+<style>
+.emp-profile {
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+    box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+  }
+</style>
+{% comment %} <div class="row p-5">
+  <div class="col-md-4 card mr-2">
+    <h3>Total Visit</h3>
+    {{total_visit}}
+    <h3>Total Visit Today</h3>
+    {{today_total_visit}}
+  </div>
+  <div class="col-md-4 card mr-2">
+    <h3>Visit Completed</h3>
+    {{completed_visit}}
+    <h3>Visit Completed Today</h3>
+    {{completed_visit_today}}
+  </div>
+  <div class="col-md-4 card mr-2">
+    <h3>Visit Pending</h3>
+    {{panding_visit}}
+    <h3>Visit Pending Today</h3>
+    {{panding_visit_today}}
+</div>
+  </div> {% endcomment %}
+
+<div class="container mt-5">  
+<div class="row">
+            <div class="col-xl-4 col-md-4">
+                  <div class="card-box emp-profile">
+                     
+                        
+                    <h4 class="header-title mt-0 mb-4">Total Visit</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1 float-left" dir="ltr">
+                            <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#f05050 "
+                                   data-bgColor="#F9B9B9" value="{{total_visit}}"
+                                   data-skin="tron" data-angleOffset="180" data-readOnly=true
+                                   data-thickness=".15"/>
+                        </div>
+                        <div class="widget-detail-1 text-right">
+                            <h2 class="font-weight-normal pt-2 mb-1"> {{total_visit}} </h2>
+                            <p class="text-muted mb-1">Visitors</p>
+                        </div>
+                    </div>
+                  </div>
+               </div>
+               <div class="col-xl-4 col-md-4">
+                  <div class="card-box emp-profile">
+                     
+                        
+                    <h4 class="header-title mt-0 mb-4">Visit Pending</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1 float-left" dir="ltr">
+                            <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#f05050 "
+                                   data-bgColor="#F9B9B9" value="{{panding_visit}}"
+                                   data-skin="tron" data-angleOffset="180" data-readOnly=true
+                                   data-thickness=".15"/>
+                        </div>
+                        <div class="widget-detail-1 text-right">
+                            <h2 class="font-weight-normal pt-2 mb-1"> {{panding_visit}} </h2>
+                            <p class="text-muted mb-1">Visitors</p>
+                        </div>
+                    </div>
+                  </div>
+               </div>
+            
+            <div class="col-xl-4 col-md-4">
+                  <div class="card-box emp-profile">
+                     
+                        
+                    <h4 class="header-title mt-0 mb-4">Visit Completed</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1 float-left" dir="ltr">
+                            <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#f05050 "
+                                   data-bgColor="#F9B9B9" value="{{completed_visit}}"
+                                   data-skin="tron" data-angleOffset="180" data-readOnly=true
+                                   data-thickness=".15"/>
+                        </div>
+                        <div class="widget-detail-1 text-right">
+                            <h2 class="font-weight-normal pt-2 mb-1"> {{completed_visit}} </h2>
+                            <p class="text-muted mb-1">Visitors</p>
+                        </div>
+                    </div>
+                  </div>
+               </div></div> 
+               <div class="row">
+               <div class="col-xl-4 col-md-4">
+                  <div class="card-box emp-profile">
+                     
+                        
+                    <h4 class="header-title mt-0 mb-4">Total Visit Today</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1 float-left" dir="ltr">
+                            <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#f05050 "
+                                   data-bgColor="#F9B9B9" value="{{today_total_visit}}"
+                                   data-skin="tron" data-angleOffset="180" data-readOnly=true
+                                   data-thickness=".15"/>
+                        </div>
+                        <div class="widget-detail-1 text-right">
+                            <h2 class="font-weight-normal pt-2 mb-1"> {{today_total_visit}} </h2>
+                            <p class="text-muted mb-1">Visitors</p>
+                        </div>
+                    </div>
+                  </div>
+               </div>
+            
+            
+            <div class="col-xl-4 col-md-4">
+                  <div class="card-box emp-profile">
+                     
+                        
+                    <h4 class="header-title mt-0 mb-4">Visit Pending Today</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1 float-left" dir="ltr">
+                            <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#f05050 "
+                                   data-bgColor="#F9B9B9" value="{{panding_visit_today}}"
+                                   data-skin="tron" data-angleOffset="180" data-readOnly=true
+                                   data-thickness=".15"/>
+                        </div>
+                        <div class="widget-detail-1 text-right">
+                            <h2 class="font-weight-normal pt-2 mb-1"> {{panding_visit_today}} </h2>
+                            <p class="text-muted mb-1">Visitors</p>
+                        </div>
+                    </div>
+                  </div>
+               </div>
+               <div class="col-xl-4 col-md-4">
+                  <div class="card-box emp-profile">
+                     
+                        
+                    <h4 class="header-title mt-0 mb-4">Visit Completed Today</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1 float-left" dir="ltr">
+                            <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#f05050 "
+                                   data-bgColor="#F9B9B9" value="{{completed_visit_today}}"
+                                   data-skin="tron" data-angleOffset="180" data-readOnly=true
+                                   data-thickness=".15"/>
+                        </div>
+                        <div class="widget-detail-1 text-right">
+                            <h2 class="font-weight-normal pt-2 mb-1"> {{completed_visit_today}} </h2>
+                            <p class="text-muted mb-1">Visitors</p>
+                        </div>
+                    </div>
+                  </div>
+               </div>
+               </div>
+   {% comment %} <!-- Vendor js -->
+   <script src="{% static 'js/vendor.min.js' %}"></script>
+
+   <!-- knob plugin -->
+   <script src="{% static 'libs/jquery-knob/jquery.knob.min.js' %}"></script>
+
+   <!--Morris Chart-->
+   <script src="{% static 'libs/morris-js/morris.min.js' %}"></script>
+   <script src="{% static 'libs/raphael/raphael.min.js' %}"></script>
+
+   <!-- Dashboard init js-->
+   <script src="{% static 'js/dashboard.init.js' %}"></script>
+
+   <!-- App js -->
+   <script src="{% static 'js/app.min.js' %}"></script> {% endcomment %}
+{% endblock %}

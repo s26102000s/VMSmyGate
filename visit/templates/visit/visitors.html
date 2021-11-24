@@ -1,0 +1,102 @@
+{% extends 'base1.html' %} {% load static %} {% block content %}
+
+
+<div class="container">
+<center>
+<div class="col-10 mx-auto my-5" style="overflow-x: auto; box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;">
+  <form
+    class="form-inline"
+    method="GET"
+    action="\visitorsearch"
+    id="search_form"
+    style="
+      padding: 17px 0px 0px 0px;
+      display:flex;
+    "
+  >
+  
+    <input
+      class="form-control "
+      id="visitorSearchField"
+      type="search"
+      name="searchText"
+      placeholder="Search"
+      aria-label="Search"
+      style="border-radius: 20px 0px 0px 20px; padding:8px ;width:90%"
+    />
+    {% comment %} <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+      Search
+    </button> {% endcomment %}
+    <span style="padding-bottom:20px;">
+          <button type="submit" class="btn btn-success" style="border-radius: 0px 20px 20px 0px;padding:8px;">
+        <b><i class="fas fa-search "></i></b>
+      </button>
+      </span>
+      </div>
+  </form>
+  </div>
+
+  </center>
+</div>
+
+<div class="container-fluid">
+
+  <div class="col-10 mx-auto my-5" style="overflow-x: auto; box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;">
+    <table class="table table-hover">
+      <thead class="bg-dark" style="color:white;font-weight:bold">
+        <tr class="text-center">
+          <th scope="col">Name</th>
+          <th scope="col">Contact</th>
+          <th scope="col">Email</th>
+          <th scope="col">Date Visited</th>
+          <th scope="col">Purpose</th>
+
+          <th scope="col">Action</th>
+
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody style="font-size: 18px;">
+        {% for visitor in page_obj %}
+        <tr class="text-center"  {% if visitor.status == "Rejected" %}  style="color:red;" {% elif visitor.status == "Accepted" %} style="color:rgb(33, 18, 243);" {% endif %}>
+          <td>{{visitor.name}}</td>
+          <td>{{visitor.contact}}</td>
+          <td>{{visitor.email}}</td>
+          
+         <!-- <td>{{visitor.photo}}</td>-->
+          <td>{{visitor.date}}</td>
+          <td>{{visitor.purpose}}</td>
+
+          <td>
+             <a href="{% url 'visit:Accept' visitor.id %}" ><!--<i class="mdi mdi-square-edit-outline mdi-24px" style="color: black;"></i>--><i class="fas fa-edit"></i></a>
+          </td>
+
+          <td><b>{{visitor.status}}</b></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+<div class="container">
+<div class="mt-auto">
+<!---
+  <nav>
+    <ul class="pagination mx-auto">
+      {% if page_obj.has_previous %}
+        {% comment %} <li class="page-item"><a class="page-link btn btn-link" href="?page={{page_obj.previous_page_number}}{%if not searchText%}&searchText={%elif searchText%}&searchText={{searchText}}{% endif %}"></a></li> {% endcomment %}
+      {% endif%}
+       {% comment %} &nbsp&nbsp&nbsp&nbsp <li class="page-item"><a class="page-link  btn-link" href="#">1</a></li>&nbsp&nbsp&nbsp&nbsp {% endcomment %}
+      {% if page_obj.has_next %}
+        {% comment %} <li class="page-item" style="color:black"><a class="page-link" style="color:green" href="?page={{page_obj.next_page_number}}{% if not searchText %}&searchText={%elif searchText%}&searchText={{searchText}}{% endif %}"></a></li> {% endcomment %}
+      {% endif%}
+    </ul>
+  </nav>  
+  -->
+
+</div>  
+
+</div>
+{% endblock content %}
+
+

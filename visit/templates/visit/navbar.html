@@ -1,0 +1,63 @@
+{% load static %}
+<style></style>
+
+<nav class="navigation navbar navbar-expand-lg navbar-transparent">
+  <a class="navbar-brand" href="{% url 'visit:dashboard' %}">VMS LOGO</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarTogglerDemo03"
+    aria-controls="navbarTogglerDemo03"
+    aria-expanded="true"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse ml" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      {% if request.user.is_staff and perms.visit.is_hr %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'visit:dashboard' %}"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'visit:visitor' %}">Visitors</a>
+      </li>
+      {% elif request.user.is_staff and perms.visit.is_Security %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'visit:security_page' %}">Security Page</a>
+      </li>
+
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link disabled" href="">Create visit</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="">Settings</a>
+      </li>
+      {% endif %}
+    </ul>
+    <!-- <span class="notifications mr-3">
+      <a href="#"><i class="mdi mdi-bell auti-custom-input-icon"></i></a>
+      
+    </span> -->
+
+    <ul class="navbar-nav mx-auto float-right">
+      <li class="nav-item">
+        <span class="hello-msg text-white">Hello, {{request.user}} </span>
+      </li>
+      <li class="nav-item">
+        <span><a class="nav-link" href="">Change Password</a></span>
+      </li>
+      <li class="nav-item">
+        <span
+          ><a class="nav-link" href="{% url 'visit:logout' %}">Logout</a></span
+        >
+      </li>
+    </ul>
+  </div>
+</nav>

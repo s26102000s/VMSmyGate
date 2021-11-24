@@ -1,0 +1,303 @@
+{% extends 'base1.html' %} {% block content %} {% include 'visit/navbar1.html'%}
+{% block core_css%}
+<style>
+  body {
+    background: #eee;
+  }
+  .emp-profile {
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+    box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+  }
+  .profile-img {
+    text-align: center;
+  }
+  .profile-img img {
+    width: 70%;
+    height: 100%;
+  }
+  .profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+  }
+  .profile-head h1 {
+    color: #333;
+  }
+  .profile-head h5 {
+    color: #0062cc;
+  }
+  .profile-edit-btn {
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+  }
+  .proile-rating {
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+  }
+  .proile-rating span {
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .profile-head .nav-tabs {
+    margin-bottom: 5%;
+  }
+  .profile-head .nav-tabs .nav-link {
+    font-weight: 600;
+    border: none;
+  }
+  .profile-head .nav-tabs .nav-link.active {
+    border: none;
+    border-bottom: 2px solid #0062cc;
+  }
+  .profile-work {
+    padding: 14%;
+    margin-top: -15%;
+  }
+  .profile-work p {
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+  }
+  .profile-work a {
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .profile-work ul {
+    list-style: none;
+  }
+  .profile-tab label {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+  }
+  .profile-tab p {
+    font-weight: 600;
+    color: #0062cc;
+    text-transform: capitalize;
+  }
+</style>
+
+{%endblock core_css%}
+<!---<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 mx-auto my-5 text-center">
+      <img
+        src="{{student.photo.url}}"
+        alt="profile_img"
+        style="width: 200px; height: 200px; border-radius: 50%"
+      />
+    </div>
+    <div class="col-lg-7 mx-auto my-5 text-center">
+      <h3 class="display-3" style="margin-top: 10px">{{student.name}}</h3>
+      <hr />
+
+      <div class="row">
+        <div class="col col-lg-6 my-2"><label style="size : 20px;"> Email </label></div>
+        <div class="col col-lg-6 my-2">
+          <label for="">{{student.email}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>---->
+
+<div class="container emp-profile">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img
+            src="{{student.photo.url}}"
+            alt=""
+            style="width: 200px; height: 200px; border-radius: 50%"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-head" style="text-transform: capitalize">
+          <h1>{{ student.name }}</h1>
+          <h5 class="m-2">Web Developer and Designer</h5>
+        </div>
+        <hr />
+        <label {% if student.status == "Rejected" %}  style="color:red; font-size:20px; background-color:#686a6db8; padding:7px;" {% elif student.status == "Accepted" %} style="color:rgb(26, 250, 26); font-size:20px; background-color : #686a6db8 ;padding:7px;"  {% endif %}>
+        <b>{{student.status}}</b>
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div
+          class="justify-content-center mt-5"
+          id="assign_time_div"
+          style="visibility: hidden"
+        >
+          <form method="POST">
+            <label><h4>Assign Time</h4> </label>
+            {% csrf_token %}
+
+            <div class="col-12">
+              <div class="form-group mb-2">
+                <label><b>From</b></label>
+                {{form.from_time}}
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group mb-2">
+                <label for="id_time">&nbsp</label>
+                <label><b>To</b></label>
+                {{form.to_time}}
+              </div>
+            </div>
+
+            <button type="Submit" class="btn btn-primary"><b>Save</b></button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="row m-2">
+            <div class="col-md-6">
+              <label>User Id</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{ student.id }}</p>
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col-md-6">
+              <label>Name</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{ student.name }}</p>
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col-md-6">
+              <label>Email</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{ student.email }}</p>
+            </div>
+          </div>
+
+          <div class="row m-2">
+            <div class="col-md-6">
+              <label>Actions</label>
+            </div>
+
+            <div class="col-md-3">
+                <form method="POST" action="{% url 'visit:rejection' student.id %}">
+                {% csrf_token %}
+            <!--  <input type="hidden" name="id" value={{student.id}}> --> 
+              <button
+                type="submit"
+                name="reject_btn"
+                class="btn btn-danger"
+              >
+                <b>Reject</b>
+              </button>
+              </form>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                class="btn btn-warning"
+                onclick="assign_time_div()"
+              >
+                <b>Accept</b>
+              </button>
+            </div>
+          </div>
+
+          <div class="row m-2">
+            <div class="col-md-6">
+              <label>Contact</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{student.contact}}</p>
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col-md-6">
+              <label>College</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{student.college}}</p>
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col-md-6">
+              <label>Address</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{student.address}}</p>
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col-md-6">
+              <label>Purpose</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{student.purpose}}</p>
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col-md-4">
+              <label>Meeting Time</label>
+            </div>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>From</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{student.from_time}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>To</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{student.to_time}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+  function assign_time_div() {
+    document.getElementById("assign_time_div").style.visibility = "visible";
+  }
+</script>
+{% endblock%} {% block core_js %}
+
+
+
+{% endblock core_js%}

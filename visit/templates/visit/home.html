@@ -1,0 +1,324 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block core_css%}
+<style>
+  body {
+    background: #eee;
+  }
+  .emp-profile {
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+    box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+  }
+  .profile-img {
+    text-align: center;
+  }
+  .profile-img img {
+    width: 70%;
+    height: 100%;
+  }
+  .profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+  }
+  .profile-head h1 {
+    color: #333;
+  }
+  .profile-head h5 {
+    color: #0062cc;
+  }
+  .profile-edit-btn {
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+  }
+  .proile-rating {
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+  }
+  .proile-rating span {
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .profile-head .nav-tabs {
+    margin-bottom: 5%;
+  }
+  .profile-head .nav-tabs .nav-link {
+    font-weight: 600;
+    border: none;
+  }
+  .profile-head .nav-tabs .nav-link.active {
+    border: none;
+    border-bottom: 2px solid #0062cc;
+  }
+  .profile-work {
+    padding: 14%;
+    margin-top: -15%;
+  }
+  .profile-work p {
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+  }
+  .profile-work a {
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .profile-work ul {
+    list-style: none;
+  }
+  .profile-tab label {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+  }
+  .profile-tab p {
+    font-weight: 600;
+    color: #0062cc;
+    text-transform: capitalize;
+  }
+</style>
+<style>
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+}
+
+.alert.success {background-color: #04AA6D;}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+{%endblock core_css%}
+{% block style %}
+
+
+<style>
+  #showPasswordToggle {
+    cursor: pointer;
+    transition: all;
+    margin-left: 85%;
+  }
+
+</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock style%}
+
+
+{% block content %}
+<body style="background: #eee;">
+
+{% comment %} <a href="\login\">Login</a> {% endcomment %}
+<div class="container emp-profile">
+<div class="row">
+{% comment %} <h1 class="ml-4">Register Your Visit</h1> {% endcomment %}
+
+  <div class="col-md-12">
+    <div>
+    {% if messages %}
+    <div class="alert success">
+  <span class="closebtn">&times;</span>  
+  <strong>Success!</strong>{{messages}} .
+</div>
+{% endif %}
+  <script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 600);
+  }
+}
+</script>
+
+      <div class="contact-form">
+        {% comment %} <a class="close">&times;</a> {% endcomment %}
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Visit Request</h2>
+            <div class="row">
+                <div class="col-sm">
+                  <div class="form-group mb-2">
+                      <label for="id_name">Name</label>  
+                      {{form.name}}
+                    </div>                  
+                </div>              
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                  <div class="form-group mb-2">
+                      <label for="id_contact">Contact</label>
+                      {{form.contact}}
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="form-group mb-2">
+                      <label for="id_email">Email</label>
+                      {{form.email}}
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group mb-2">
+                        <label for="id_Address">Address</label>
+                        {{form.address}}
+                    </div>
+                  </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group mb-2">
+                        <label for="id_email">College</label>
+                        {{form.college}}
+                    </div>
+                  </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group mb-2">
+                        <label for="id_photo">Photo</label>
+                        {{form.photo}}
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group mb-2">
+                        <label for="id_date">Date Visiting</label>
+                        {{form.date}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group mb-2">
+                        <label for="from_time">Visiting Time</label>
+                        {{form.from_time}}
+                    </div>
+                </div>
+            
+                <div class="col-sm">
+                    <div class="form-group mb-2">
+                        <label for="to_time">&nbsp</label>
+                        {{form.to_time}}
+                    </div>
+                </div>
+            </div>
+            <span style="color:red">{{error}}</span>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group mb-2">
+                        <label for="id_purpose">Purpose</label>
+                        {{form.purpose}}
+                    </div>
+                </div>
+            </div>
+            <input type='text' hidden value='pending' id='status' name='status'>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    </div>
+    <div id="modalTwo" class="tab-pane">
+
+  </div>
+</div>
+
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/moment.js"></script>
+    <script>
+    var today = new Date();
+    if(dd<10){
+    dd='0'+dd
+    } 
+    if(mm<10){
+    mm='0'+mm
+    }
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    today =  today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    
+   document.getElementById("datefield").setAttribute("min",today1);
+    var from = $("input[name='from_time[]']").val(); 
+    var to = $("input[name='to_time[]']").val(); 
+    if (moment(from, 'hh:mm a') > moment(to, 'hh:mm a')) {
+  alert("Invalid Date Range");
+} else {
+  alert("Valid Date Range");
+}
+    </script>   
+    
+{% endblock javascript %}
+<script>
+$(document).ready(function () {
+    $('.nav li a').click(function(e) {
+
+        $('.nav li.active').removeClass('active');
+
+        var $parent = $(this).parent();
+        $parent.addClass('active');
+        e.preventDefault();
+    });
+});
+
+</script> 
+    <script>
+    $(document).ready(function(){
+    $('.nav li').click(function(event){
+        //remove all pre-existing active classes
+        $('.active').removeClass('active');
+
+        //add the active class to the link we clicked
+        $(this).addClass('active');
+
+        //Load the content
+        //e.g.
+        //load the page that the link was pointing to
+        //$('#content').load($(this).find(a).attr('href'));
+        event.preventDefault();
+    });
+});
+    </script>
+<!-- {{form.as_p}} -->
+
+{% endblock %}

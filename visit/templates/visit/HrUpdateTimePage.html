@@ -1,0 +1,116 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+{% block content %}
+{%  include 'visit/navbar1.html' %}
+
+<div class="container">
+    
+    <div class="m-5">
+    <h2 class="display-2">Update Time<h2>
+    </div>
+    <hr/>
+    <div class="row text-center">
+        <div class="col col-md-6">
+          <img
+          src="{{student.photo.url}}"
+          alt="profile_img"
+          style="width: 250px; height: 250px"
+          class="m-5"
+        />
+                 
+
+        </div>
+        <div class="col col-md-6">
+            <table class="table table-hover">
+                <input
+                  hidden
+                  type="number"
+                  name="user_detail_id"
+                  value="{{student.id}}"
+                />
+                <tr class="col">
+                  <td><label><b>Username</b></label></td>
+                  <td><b>{{student.name}}</b></td>
+                </tr>
+        
+                <tr>
+                  <td><label><b>E-mail</b> </label></td>
+                  <td><b>{{student.email}}</b></td>
+                </tr>
+        
+                
+                
+                <tr>
+                  <td><label><b> Contact</b> </label></td>
+                  <td><b>{{student.contact}}</b></td>
+                </tr>
+        
+                <tr>
+                  <td><label><b> Address </b> </label></td>
+                  <td><b>{{student.address}}</b></td>
+                </tr>
+        
+                <tr>
+                  <td><label><b> College</b> </label></td>
+                  <td><b>{{student.college}}</b></td>
+                </tr>
+                
+                <tr>
+                  <td><label><b>Date</b></label></td>
+                  <td><b>{{student.date}}</b></td>
+                </tr>
+                
+
+                <tr>
+                  <td><label><b>Purpose</b></label></td>
+                  <td><b>{{student.purpose}}</b></td>
+                </tr>
+
+            </table>
+
+              <div class="m-3"><b>{% if student.status == "Accepted" %}Meeting Time{% else %} Visiting Time {% endif %}</b></div>
+                  
+                  <div class="row">
+                    
+                    <div class="col col-3"><label><b>From</b></label></div>
+                    <div class="col col-3"> {{student.from_time}} </div>
+                    <div class="col col-3"><label><b>To</b></label></div>
+                    <div class="col col-3"> {{student.to_time}} </div>
+                    
+                  </div>
+              </div>
+          </div>
+
+        
+    </div>
+    <div class="col-8 justify-content-center">
+    <form id="search_form" method="POST">
+      <label><h4>Assign Time </h4> </label>
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group mb-2">
+           <label><b>From</b></label> 
+            {{form.from_time}}
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group mb-2">
+            <label for="id_time">&nbsp</label>
+            <label><b>To</b></label>
+            {{form.to_time}}
+          </div>
+        </div>
+      </div>
+      <button type="Submit" class="btn btn-primary"><b>Save</b></button>
+      {{error}}
+    </form>
+    
+    </div>
+        
+
+</div>
+
+{% endblock content %}

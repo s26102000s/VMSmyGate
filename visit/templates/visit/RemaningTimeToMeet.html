@@ -1,0 +1,382 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-light-blue: #8486a9;
+    --color-red: rgb(251, 96, 135);
+    --color-white: rgb(255, 255, 255);
+    --color-dark-blue: #343650;
+    --color-very-dark-blue: #1e1f29;
+    --color-black: #191a24;
+}
+
+html {
+    font-family: 'Red Hat Text', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--color-very-dark-blue);
+}
+
+main {
+    background:url({% static 'images/bg-stars.svg' %}) center / contain repeat;
+    height: 75%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.caption {
+    font-size: 1.3rem;
+    color: var(--color-white);
+    text-transform: uppercase;
+    text-align: center;
+    width: 90%;
+    margin-bottom: 3em;
+    letter-spacing: .4em;
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 21%);
+    justify-content: space-around;
+    width: 90%;
+    max-width: 750px; 
+}
+
+.time-content {
+    height: 70px;
+    box-shadow: 0px 7px 2px -2px rgb(25, 26, 36);
+    background-color: var(--color-very-dark-blue);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    font-size: 1rem;
+    margin-bottom: 1em;
+}
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-dark-blue);
+    position: relative;
+}
+
+.time::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #272938c0;
+}
+
+.time > span {
+    display: block;
+    color: var(--color-red);
+    font-size: 2.5em;
+    z-index: 2;
+}
+
+.rings {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.15);
+    z-index: 3;
+}
+
+.rings::before, .rings::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-very-dark-blue);
+    top: -2px;
+}
+
+.rings::before {
+    left: -3.5px;
+}
+
+.rings::after {
+    right: -3.5px;
+}
+
+.metric {
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-light-blue);
+    font-size: .6rem;
+    letter-spacing: 3px;
+}
+
+footer {
+    background: url({% static 'images/pattern-hills.svg' %}) top right 16% / 290% 100% no-repeat;
+    height: 25%;
+}
+
+.socials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 5rem;
+}
+
+.socials > .icon {
+    justify-content: center;
+    cursor: pointer;
+}
+
+.socials > .icon:hover path {
+    fill: var(--color-red);
+}
+
+.attribution {
+    font-size: 11px;
+    padding: 1em;
+    text-align: center;
+}
+
+.attribution p {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.attribution a:hover, .attribution a:focus {
+    text-decoration: underline;
+}
+
+@media (min-width: 1024px) {
+    .caption {
+        font-size: x-large;
+        margin-bottom: 4em;
+    }
+    .countdown {
+        grid-template-columns: repeat(4, 18%);
+    }
+    .time-content {
+        height: 120px;
+        box-shadow: 0px 9px 2px -1px rgb(25, 26, 36);
+    }
+
+    .time > span {
+        font-size: 5em;
+    }
+
+    .metric {
+        margin-top: 1.5em;
+        font-size: 1rem;
+    }
+
+    .rings {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+    }
+    
+    .rings::before, .rings::after {
+        width: 10px;
+        height: 10px;
+        top: -4px;
+    }
+
+    .rings::before {
+        left: -5px;
+    }
+    
+    .rings::after {
+        right: -5px;
+    }
+
+    footer {
+        background-position: center;
+        background-size: cover;
+    }
+
+    .socials {
+        width: 13%;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 640px) {
+    .caption {
+        font-size: 1.5rem;
+        width: 80%;
+    }
+
+    .countdown {
+        grid-template-columns: repeat(4, minmax(100px, 120px));
+        gap: 1rem;
+    }
+
+    .time-content {
+        height: 90px;
+    }
+
+    .time > span {
+        font-size: 3.5em;
+    }
+
+    .socials {
+        width: 30%;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+    .caption {
+        font-size: 1.7rem;
+        width: 70%;
+    }
+
+    .countdown {
+        grid-template-columns: repeat(4, minmax(100px, 140px));
+        gap: 1rem;
+    }
+
+    .time-content {
+        height: 110px;
+    }
+
+    .time > span {
+        font-size: 4em;
+    }
+}</style>
+</head>
+<body class="game_info" data-spy="scroll" data-target=".header">
+
+  <div class="container">
+    <main>
+      <h1 class="caption">{{option}}</h1>
+      <section class="countdown">
+        <div class="time-wrapper">
+          <div class="time-content">
+            <div class="time">
+              <span class="days" id='days'></span>
+              <div class="rings"></div>
+            </div>
+          </div>
+          <p class="metric">Days</p>
+        </div>
+
+        <div class="time-wrapper">
+          <div class="time-content">
+            <div class="time">
+              <span class="hours" id='hours'></span>
+              <div class="rings"></div>
+            </div>
+          </div>
+          <p class="metric">Hours</p>
+        </div>
+
+        <div class="time-wrapper">
+          <div class="time-content">
+            <div class="time">
+              <span class="minutes" id='minutes'></span>
+              <div class="rings"></div>
+            </div>
+          </div>
+          <p class="metric">Minutes</p>
+        </div>
+
+        <div class="time-wrapper">
+          <div class="time-content">
+            <div class="time">
+              <span class="seconds" id='seconds'></span>
+              <div class="rings"></div>
+            </div>
+          </div>
+          <p class="metric">Seconds</p>
+        </div>
+
+      </section>
+    </main>
+
+    <footer>
+      <div class="socials">
+       
+      </div>
+
+    </footer>
+
+  </div>
+
+ <script>
+var f=1
+function makeTimer() {
+   var endTime=new Date({{ timeleft|date:"U"}} * 1000);
+    endTime = (Date.parse(endTime) / 1000);
+
+        var now = new Date();
+        now = (Date.parse(now) / 1000);
+
+        var timeLeft = endTime - now;
+
+        var days = Math.floor(timeLeft / 86400);
+        var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+        var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
+        var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+        if (hours < "10") { hours = "0" + hours; }
+        if (minutes < "10") { minutes = "0" + minutes; }
+        if (seconds < "10") { seconds = "0" + seconds; }
+        if (days<0){days='0', hours = '0' ,minutes = '0' ,seconds = '0';
+         setTimeout("location.reload(true);",1500);
+        }
+        
+        if (f==1){
+        if (hours==0 && minutes<5){
+            window.alert("{{option}} "+hours+":"+minutes+":"+seconds);
+            f=0
+        }}
+        $("#days").html(days + "<span></span>");
+        $("#hours").html(hours + "<span></span>");
+        $("#minutes").html(minutes + "<span></span>");
+        $("#seconds").html(seconds + "<span></span>");
+       $("#time").html(hours+"<span>:</span>"+minutes+"<span>:</span>"+seconds)
+    if(days>0){
+    }
+}
+    setInterval(function() { makeTimer(); }, 1000);
+
+</script> 
+</body>
+</html>

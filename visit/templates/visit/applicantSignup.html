@@ -1,0 +1,131 @@
+{% extends 'base1.html' %} {% block content %}
+<div class="container">
+  <div class="m-5">
+    <h3 class="display-3">Sign Up Here</h3>
+  </div>
+  <hr />
+
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label><b>Username</b></label>
+        <input
+          type="text"
+          class="form-control"
+          id="uname"
+          placeholder="username"
+        />
+      </div>
+      <div class="form-group col-md-5">
+        <label><b>Email</b></label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Email"
+        />
+      </div>
+      <div class="form-group col-md-5">
+        <label><b>First Name</b></label>
+        <input
+          type="text"
+          class="form-control"
+          id="fname"
+          placeholder="First Name"
+        />
+      </div>
+
+      <div class="form-group col-md-5">
+        <label><b>Last Name</b></label>
+        <input
+          type="text"
+          class="form-control"
+          id="lname"
+          placeholder="Last Name"
+        />
+      </div>
+
+      <div class="form-group col-md-5">
+        <label><b>Id Proof</b></label>
+        <input
+          type="text"
+          class="form-control"
+          id="id_name"
+          placeholder="Enter Id Name"
+        />
+      </div>
+      <div class="form-group col-md-5">
+        <label><b>Id Number</b></label>
+        <input
+          type="number"
+          class="form-control"
+          id="id_num"
+          placeholder="Id Number"
+        />
+      </div>
+      <div class="form-group col-md-5">
+        <label><b>Contact</b></label>
+        <input
+          type="number"
+          class="form-control"
+          id="contact"
+          placeholder="Contact"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label><b>Address</b></label>
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        placeholder="1234 Main St"
+      />
+    </div>
+
+    <button type="submit" name="applicant_save_btn" class="btn btn-primary">Sign in</button>
+  </form>
+</div>
+
+{% block core_js %}
+<!---<script>
+  function validate()
+  {     
+      var uname=document.getElementById("uname").value;
+      var email= document.getElementById("email").value;
+      var pass=document.getElementById("pass").value;
+      var cpass=document.getElementById("cpass").value;
+      var fname=document.getElementById("fname").value;
+      var lname=document.getElementById("lname").value;
+      var id_name=document.getElementById("id_name").value;
+      var id_num=document.getElementById("id_num").value;
+      var contact=document.getElementById("contact").value;
+      var Address=document.getElementById("address").value;
+      
+
+      if(uname=="" || email=="" || pass ==""|| cpass==""
+            || fname=="" || lname=="" || id_name=="" || id_num == "" || contact == "" || Address ="" )
+
+      {
+        return false;
+      }
+      else if(password=="")
+      {
+          alert("password is empty");
+          return false;
+      }
+      else if(username=="")
+      {
+          alert("username is empty");
+          return false;
+      }
+      else
+      {
+          return true;
+      }
+
+  }
+</script>--->
+
+{% endblock core_js %}
+ {% endblock content%}

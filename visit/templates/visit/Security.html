@@ -1,0 +1,217 @@
+{% extends 'base1.html' %}
+{% load static %}
+ 
+    {% comment %} <link
+      href="{% static 'css/search.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    /> {% endcomment %}
+
+{% block content %}
+{%  include 'visit/navbar1.html' %}
+
+{% block core_css%}
+<style>
+  body {
+    background: #eee;
+  }
+  {% comment %} .emp-profile {
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+    box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+  } {% endcomment %}
+  .profile-img {
+    text-align: center;
+  }
+  .profile-img img {
+    width: 70%;
+    height: 100%;
+  }
+  .profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+  }
+  .profile-head h1 {
+    color: #333;
+  }
+  .profile-head h5 {
+    color: #0062cc;
+  }
+  .profile-edit-btn {
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+  }
+  .proile-rating {
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+  }
+  .proile-rating span {
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .profile-head .nav-tabs {
+    margin-bottom: 5%;
+  }
+  .profile-head .nav-tabs .nav-link {
+    font-weight: 600;
+    border: none;
+  }
+  .profile-head .nav-tabs .nav-link.active {
+    border: none;
+    border-bottom: 2px solid #0062cc;
+  }
+  .profile-work {
+    padding: 14%;
+    margin-top: -15%;
+  }
+  .profile-work p {
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+  }
+  .profile-work a {
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .profile-work ul {
+    list-style: none;
+  }
+  .profile-tab label {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+  }
+  .profile-tab p {
+    font-weight: 600;
+    color: #0062cc;
+    text-transform: capitalize;
+  }
+</style>
+
+{%endblock core_css%}
+<div class="container-fluid">
+<div class="card-box">
+
+  <form
+    class="form-inline"
+    method="GET"
+    action="\EntryTime"
+    id="search_form"
+    style="
+      margin-top: 3%;
+    "
+  >
+  <div class="container">
+  <div class="row emp-profile" >
+  <div class="col-md-12" style="display:flex;">
+    <input
+      class="form-control "
+      id="visitorSearchField"
+      type="search"
+      name="searchText"
+      placeholder="Search According To Visitor ID"
+      aria-label="Search"
+      style="border-radius: 2px 0px 0px 2px; padding:5px ;width:100%;border:3px black solid;border-style:solid none solid solid;"
+    />
+
+    <span style="padding-bottom:20px;width:auto">
+          <button type="submit" class="btn btn-dark" style="border-radius: 0px 2px 2px 0px;padding:7px 1.4rem 7px 2rem;">
+        <b><i class="fas fa-search ">&nbsp&nbsp&nbsp&nbsp</i></b>
+      </button>
+      </span>
+      </div>
+      </div>
+<span style='color:red'>{{error.title}}</span>
+  </div>
+  </form>
+
+  <!-----table starts-->
+
+  <div class="container-fluid">
+
+    <div class="col-12" style="overflow-x: auto; box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;">
+      <table class="table table-hover">
+        <thead class="bg-dark" style="color:white;font-weight:bold">
+          <tr class="text-center">
+            <th scope="col">Visitor&nbspID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date Visited</th>
+            <th scope="col">Purpose</th>
+  
+            {% comment %} <th scope="col">Action</th> {% endcomment %}
+  
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody style="font-size: 15px;">
+          {% for visitor in page_obj %}
+          <tr class="text-center"   {% if visitor.status == "Rejected" %}  style="color:red;" {% elif visitor.status == "Accepted" %} style="color:rgb(33, 18, 243);"{%elif visitor.status == "pending" %} style="background-color: rgb(253, 205, 101);"  {% endif %}>
+            <td>{{visitor.id}}</td>
+            <td>{{visitor.name}}</td>
+            <td>{{visitor.contact}}</td>
+            <td>{{visitor.email}}</td>
+            
+           <!-- <td>{{visitor.photo}}</td>-->
+            <td>{{visitor.date}}</td>
+            <td>{{visitor.purpose}}</td>
+  
+            {% comment %} <td>
+               <a href="{% url 'visit:Accept' visitor.id %}" ><!--<i class="mdi mdi-square-edit-outline mdi-24px" style="color: black;"></i>--><i class="fas fa-edit"></i></a>
+            </td>
+   {% endcomment %}
+            <td><b>{{visitor.status}}</b></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+<br>
+  <div>
+    <nav aria-label="Page navigation example">
+      <span style="display:flex;">  
+      <ul class="pagination mx-auto" style:"float:left;">
+        {% if page_obj.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}{%if not searchText%}&searchText={%elif searchText%}&searchText={{searchText}}{% endif %}"><b>
+          <i class="fas fa-arrow-left"></i>
+          Previous</b></a></li>
+        {% endif%}
+        </ul>
+          {% comment %} <li class="page-item"><a class="page-link" href="#">1</a></li> {% endcomment %}
+        <ul class="pagination mx-auto" style="float:right;">
+        {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}{% if not searchText %}&searchText={%elif searchText%}&searchText={{searchText}}{% endif %}"><b>Next&nbsp<i class="fas fa-arrow-right"></i></b></a></li>
+        {% endif%}
+      </ul>
+      </span>
+    </nav>
+  
+  
+    </div>
+    
+  </div>
+
+  <!--table ends-->
+
+{% endblock content %}

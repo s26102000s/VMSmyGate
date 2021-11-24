@@ -1,0 +1,268 @@
+{% extends 'base1.html' %} {% block content %} 
+{% load widget_tweaks %}
+{% block core_css%}
+<style>
+  body {
+    background: #eee;
+  }
+  .emp-profile {
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+    box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+  }
+  .profile-img {
+    text-align: center;
+  }
+  .profile-img img {
+    width: 70%;
+    height: 100%;
+  }
+  .profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+  }
+  .profile-head h1 {
+    color: #333;
+  }
+  .profile-head h5 {
+    color: #0062cc;
+  }
+  .profile-edit-btn {
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+  }
+  .proile-rating {
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+  }
+  .proile-rating span {
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .profile-head .nav-tabs {
+    margin-bottom: 5%;
+  }
+  .profile-head .nav-tabs .nav-link {
+    font-weight: 600;
+    border: none;
+  }
+  .profile-head .nav-tabs .nav-link.active {
+    border: none;
+    border-bottom: 2px solid #0062cc;
+  }
+  .profile-work {
+    padding: 14%;
+    margin-top: -15%;
+  }
+  .profile-work p {
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+  }
+  .profile-work a {
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .profile-work ul {
+    list-style: none;
+  }
+  .profile-tab label {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+  }
+  .profile-tab p {
+    font-weight: 600;
+    color: #0062cc;
+    text-transform: capitalize;
+  }
+</style>
+<style>
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+}
+
+.alert.success {background-color: #04AA6D;}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+
+{%endblock core_css%}
+{% include 'visit/navbar1.html' %}
+<div class="container emp-profile">
+<form class="form-horizontal" action="\register\" method="POST">
+                        {% csrf_token %}
+
+{% if error1 %}
+    <div class="alert success">
+  <span class="closebtn">&times;</span>  
+  <strong>Success!</strong>{{error1}} .
+</div>
+{% endif %}
+  <script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 600);
+  }
+}
+</script>
+                        
+                        <span style="font-size:35px;">Sign Up<hr></span>
+                        
+                        <div class="row">
+                        <div class="col-md-6">
+                          <i class="ri-user-2-line auti-custom-input-icon"></i>
+                          <label for="username1">Username</label>
+                          {{form.username}}
+                          {% comment %} <input type="text" name="username1" class="form-control" id="username1" placeholder="Enter username"> {% endcomment %}
+                        </div>
+                        <div class="col-md-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-open" viewBox="0 0 16 16">
+  <path d="M8.47 1.318a1 1 0 0 0-.94 0l-6 3.2A1 1 0 0 0 1 5.4v.818l5.724 3.465L8 8.917l1.276.766L15 6.218V5.4a1 1 0 0 0-.53-.882l-6-3.2zM15 7.388l-4.754 2.877L15 13.117v-5.73zm-.035 6.874L8 10.083l-6.965 4.18A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738zM1 13.117l4.754-2.852L1 7.387v5.73zM7.059.435a2 2 0 0 1 1.882 0l6 3.2A2 2 0 0 1 16 5.4V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.4a2 2 0 0 1 1.059-1.765l6-3.2z"/>
+</svg>
+                          {% comment %} <i class="ri-user-2-line auti-custom-input-icon"></i> {% endcomment %}
+                          <label for="email">Email</label>
+                          {{form.email}}
+                          {% comment %} <input type="email" name="email" class="form-control" id="email" placeholder="Enter email"> {% endcomment %}
+                        </div></div><div class="row">
+                        <div class="col-md-6">
+                          <i class="ri-user-2-line auti-custom-input-icon"></i>
+                          <label for="firstname">First Name</label>
+                          {{form.firstname}}
+                          {% comment %} <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Enter firstname"> {% endcomment %}
+                        </div>
+                        <div class="col-md-6">
+                          <i class="ri-user-2-line auti-custom-input-icon"></i>
+                          <label for="lastname">Last Name</label>
+                          {{form.lastname}}
+                          {% comment %} <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Enter lastname"> {% endcomment %}
+                        </div></div><div class="row">
+                        <div class="col-md-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+</svg>
+                          {% comment %} <i class="ri-user-2-line auti-custom-input-icon"></i> {% endcomment %}
+                          <label for="id_name">ID Proof</label>
+                          {{form.id_name}}
+                          {% comment %} <input type="text" name="id_name" class="form-control" id="id_name" placeholder="Enter id_name"> {% endcomment %}
+                        </div>
+                        <div class="col-md-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+</svg>
+                          {% comment %} <i class="ri-user-2-line auti-custom-input-icon"></i> {% endcomment %}
+                          <label for="id_num">ID Number</label>
+                          {{form.id_num}}
+                          {% comment %} <input type="text" name="id_num" class="form-control" id="id_num" placeholder="Enter id_num"> {% endcomment %}
+                        </div></div><div class="row">
+                        <div class="col-md-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+</svg>
+                          {% comment %} <i class="ri-user-2-line auti-custom-input-icon"></i> {% endcomment %}
+                          <label for="contact">Contact</label>
+                          {{form.contact}}
+                          {% comment %} <input type="text" name="contact" class="form-control" id="contact" placeholder="Enter contact"> {% endcomment %}
+                        </div>
+                        <div class="col-md-6">
+              
+              
+                          <label for="contact">Role</label>
+                          {% render_field form.role class='form-control' %}
+                          {% comment %} {{form.role}} {% endcomment %}
+                          {% comment %} <select class="form-control" name="Role">
+                          <option selected disabled =true >---- Select option ----</option>
+                          <option value="HR">HR</option>
+                          <option value="Security">Security</option> {% endcomment %}
+                          
+                          {% comment %} </select> {% endcomment %}
+                          {% comment %} <input type="text" name="contact" class="form-control" id="contact" placeholder="Enter contact"> {% endcomment %}
+                        </div>
+                        
+                        <div class="col-md-12">
+                          {% comment %} <i class="ri-user-2-line auti-custom-input-icon"></i> {% endcomment %}
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+  <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+</svg>
+                          <label for="address">Address</label>
+                          {{form.address}}
+                          </div>
+                          {% comment %} <input type="text" name="address" class="form-control" id="address" placeholder="Enter address"> {% endcomment %}
+                        </div>
+                        {% comment %} <div class="row">
+                        <div class="col-md-12">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+  <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+  <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+</svg>
+                      
+                        <label for="photo">Photo</label>
+                        {{form.photo}}
+                        </div></div> {% endcomment %}
+                        
+                        
+                        {{form.status}}
+                        
+                        
+                        <div class=" text-center">
+                        <div style='color:red'>{{error}}</div>
+                        <div class="row">
+                        <div class="col-md-12"style="padding:10px">
+                          <button class="btn btn-primary w-md waves-effect waves-light" style="float:right;" type="submit" >Register</button>
+                         
+                        </div>                     
+</form>
+                    
+                    {% for message in messages%}
+                    <p id="message">{{message}}</p>
+                    {% endfor %}
+                    
+
+{% endblock%} {% block core_js %}
+
+
+{% endblock core_js%}

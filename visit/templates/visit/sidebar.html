@@ -1,0 +1,103 @@
+{% load static %}
+<div class="left-side-menu">
+   <div class="slimscroll-menu">
+<style>
+ul li a : active{color:#b27100 !important;}
+</style>
+       <!-- User box -->
+       <div class="user-box text-center">
+           <div class="dropdown">
+               <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-toggle="dropdown"  aria-expanded="false">{{user.username.capitalize}}</a>
+               
+           </div>
+           
+
+           <!-- <ul class="list-inline">
+               <li class="list-inline-item">
+                   <a href="#" class="text-muted">
+                       <i class="mdi mdi-cog"></i>
+                   </a>
+               </li>
+
+               <li class="list-inline-item">
+                   <a href="#">
+                       <i class="mdi mdi-power"></i>
+                   </a>
+               </li>
+           </ul> -->
+       </div>
+
+       <!--- Sidemenu -->
+        <div id="sidebar-menu">
+
+            <ul class="metismenu" id="side-menu">
+                {%if request.user.is_superuser%}
+        <li><a href="{% url 'visit:dashboard' %}" style="dispay:flex;"><i style="color: white;" class="mdi mdi-view-dashboard"></i> <span>Dashboard </span></a></li>
+        <li><a href="{% url 'visit:visitor' %}" style="dispay:flex;"><i style="color: white;" class="fas fa-user-tie"></i><span> Visitors </span></a></li>
+        <li><a href="{% url 'visit:newvisitor' %}" style="dispay:flex;"><i style="color: white;" class="fas fa-user-plus"></i><span>Add&nbspVisitors</span></a></li>
+        <li><a href="{% url 'visit:NewApplicants' %}" style="dispay:flex;"><i style="color: white;" class="fas fa-user-check"></i><span>Employee</span></a></li>
+        <li><a href="{% url 'visit:register' %}" style="dispay:flex;"><i style="color: white;" class=" fas fa-user-edit"></i><span>New&nbspEmployee</span></a></li>
+         <li><a href="{% url 'visit:security_page' %}" style="dispay:flex;"><i style="color: white;" class=" fas fa-user-shield"></i><span>Security</span></a></li>
+          <li>
+          <a href="#" style="dispay:flex;">
+          <i  style="color: white;"  class="mdi mdi-account-convert"></i>
+          <span>Hello,{{user}}</span><span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{% url 'visit:changepass' %}"><i  style="color: white;" class="mdi mdi-plus"></i>Change Password</a></li>
+                        <li><a href="{% url 'visit:logout' %}"><i  style="color: white;" class="mdi mdi-logout"></i>Log out</a></li>
+                    </ul>
+                </li>
+
+              
+            {% elif request.user.is_staff and perms.visit.is_hr %}
+        <li><a class="nav-link active" href="{% url 'visit:dashboard' %}"><i style="color: white;"  class="mdi mdi-view-dashboard"></i><span>Home</span></a></li>
+        <li><a href="{% url 'visit:visitor' %}"><i  style="color: white;" class="fas fa-user-tie"></i><span>Visitors</span></a></li>
+        <li><a href="{% url 'visit:newvisitor' %}"><i style="color: white;"  class="fas fa-user-plus"></i><span>Add Visitors</span></a></li>
+        <li><a href="{% url 'visit:NewApplicants' %}"><i  style="color: white;" class="fas fa-user-check"></i><span>Employee</span></a></li>
+        <li><a href="{% url 'visit:register' %}"><i style="color: white;"  class="fas fa-user-edit"></i><span>New&nbspEmployee</span></a></li>
+                  <li>
+          <a href="#" style="dispay:flex;">
+          <i  style="color: white;"  class="mdi mdi-account-convert"></i>
+          Hello,{{user}}<span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{% url 'visit:changepass' %}"><i  style="color: white;" class="mdi mdi-plus"></i>Change Password</a></li>
+                        <li><a href="{% url 'visit:logout' %}"><i  style="color: white;" class="mdi mdi-logout"></i>Log out</a></li>
+                    </ul>
+                </li>
+
+         {% elif request.user.is_staff and perms.visit.is_Security %}
+         <listyle="margin-right: 10px;"><a href="{% url 'visit:security_page' %}"><i  style="color: white;" class="fas fa-user-shield"></i><span>Security Page</span></a></li>
+
+       {%elif user.is_authenticated%}
+          
+        {% else %}
+        
+         <li ><a href="..\ "><i  style="color: white;" class="fas fa-user-plus"></i><span>Visit&nbspRequest</span></a></li> 
+         <li ><a href="{% url 'visit:login' %}"><i style="color: white;"  class="mdi mdi-view-dashboard"></i><span>Login</span></a></li> 
+         <li ><a href="\sineup\"><i  style="color: white;" class="mdi mdi-view-dashboard"></i><span>Sign Up</span></a></li> 
+          <li class="nav-item dropdown" >
+          <a 
+             href="#" role="button" 
+            aria-haspopup="true" aria-expanded="false" 
+            style="color: white; font-size:20px;">
+            <i
+             style="color: white;" 
+           class="fa fa-user m-2"
+           aria-hidden="true"
+           ></i><span>
+         {% if user.is_authenticated %} Hello,{{user}}{% else %}Hello,User{% endif %}</span></a></li>
+         {% endif %}
+            </ul>
+
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
+<!-- Left Sidebar End -->

@@ -1,0 +1,74 @@
+{% load static %}
+<!-- Topbar Start -->
+
+   <!-- LOGO -->     
+<div id="wrapper">
+   <div class="navbar-custom">
+
+   <div class="logo-box">
+       
+   </div>
+         <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
+          <li>
+              <button class="button-menu-mobile disable-btn waves-effect">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg>
+              </button>
+          </li>   
+      </ul>
+      <!-- Topbar Start -->
+
+   <ul class="list-unstyled topnav-menu float-right mb-0">
+       <li class="dropdown notification-list">
+           <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+            <img src="{% static 'images/user_icon.png' %}" alt="user-image" class="rounded-circle">
+               <span class="pro-user-name ml-1">
+                   {{user.username}} <i class="mdi mdi-chevron-down"></i> 
+               </span>
+           </a>
+           <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+               <!-- item-->
+               <div class="dropdown-header noti-title">
+                   <h6 class="text-overflow m-0">Welcome !</h6>
+               </div>
+
+               <!-- item-->
+               <a href="{% url 'visit:changepass' %}" class="dropdown-item notify-item" style="display:flex;">
+                   <i class="mdi mdi-plus"></i>
+                   <span>Change Password</span>
+               </a>               
+
+               <div class="dropdown-divider"></div>
+
+               <!-- item-->
+               <a href="{% url 'visit:logout' %}" class="dropdown-item notify-item" style="display:flex;">
+                   <i class="mdi mdi-logout"></i>
+                   <span>Logout</span>
+               </a>
+
+           </div>
+       </li>
+
+
+   </ul>
+      {% comment %} <ul>
+      <li>
+          <a href="#">
+          <i  style="color: white;"  class="mdi mdi-account-convert"></i>
+          Hello,{{user}}<span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{% url 'visit:changepass' %}"><i  style="color: white;" class="mdi mdi-plus"></i>Change Password</a></li>
+                        <li><a href="{% url 'visit:logout' %}"><i  style="color: white;" class="mdi mdi-logout"></i>Log out</a></li>
+                    </ul>
+                </li>
+</ul> {% endcomment %}
+  </div>
+   {% include 'visit/sidebar.html' %}
+
+
+<div class="content-page">
+ <div class="content">
+
+<!-- end Topbar -->
